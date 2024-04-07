@@ -1,3 +1,12 @@
+
+
+<img width="394" alt="image" src="https://github.com/wai72/KarunaTodoTest/assets/71938108/124f0f34-8860-4552-8847-3f8846f0742d">
+
+Instructions for UI:
+   - The checkbox indicates whether the Todo task is complete or not. You can click the checkbox to mark the task as complete.
+   - The delete icon is used to remove unnecessary todo data.
+   - Data is stored persistently so that it can be accessed even after uninstalling the application.
+         
 This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
 
 # Getting Started
