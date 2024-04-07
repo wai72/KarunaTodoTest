@@ -1,13 +1,13 @@
 import React from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
+import { View, Text, TouchableOpacity, Image } from 'react-native';
 import CheckBox from '@react-native-community/checkbox';
 import styles from './style/TodoItemStyles.css';
-import Icon from 'react-native-vector-icons/Feather';
+import Icon from 'react-native-vector-icons/AntDesign';
 
 
 const TodoItem = ({ task, deleteTask, toggleCompleted }) => {
     return (
-        <View>
+      <View style={styles.todo_container}>
       <View style={styles.todo_item}>
         <CheckBox
          // style={styles.complete_checkbox}
@@ -21,10 +21,12 @@ const TodoItem = ({ task, deleteTask, toggleCompleted }) => {
           style={styles.delete_button}
           onPress={() => deleteTask(task.id)}
         >
-           <Icon name="plus" size={24} color="#000000" />
+           <Image
+        source={require('../assets/icon_delete_24.png')} 
+        style={styles.delete_image}
+      />
         </TouchableOpacity>
       </View>
-      <View style={{width: '100%', height: 1, backgroundColor: "#ABABB0"}}/>
       </View>
     );
   }

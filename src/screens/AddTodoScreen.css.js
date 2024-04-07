@@ -7,7 +7,6 @@ export default StyleSheet.create({
     flex: 1,
     paddingHorizontal: 16,
     paddingVertical: 16,
-    justifyContent: "center",
   },
   textInput_style: {
     borderColor: configs.colors.lightGray,
@@ -18,14 +17,16 @@ export default StyleSheet.create({
   },
   button_addTodo: {
     width: 60,
-    height: 50,
+   height: 40,
     marginVertical: 16,
-    backgroundColor: configs.colors.green,
-    justifyContent: "center",
+    backgroundColor: configs.colors.primary,
+    alignSelf: 'center',
+    alignContent: 'center',
+    alignItems: 'center',
     borderRadius: 8,
   },
   addText_style: {
     color: configs.colors.white,
-    alignSelf: "center",
+    marginTop: 10
   },
 });

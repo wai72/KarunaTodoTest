@@ -29,7 +29,7 @@ export default StyleSheet.create({
     height: 60,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: configs.colors.lightGray
+    backgroundColor: configs.colors.primary
   },
 
 });
