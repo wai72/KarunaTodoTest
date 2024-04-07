@@ -38,7 +38,7 @@ const TodoList = () => {
         newTask
       ),
     );
-    Toast.show('Deleted!', Toast.LONG, {
+    Toast.show('Deleted!', Toast.SHORT, {
       backgroundColor: configs.colors.lightGray,
     });
   }
