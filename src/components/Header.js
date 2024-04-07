@@ -13,7 +13,7 @@ const ICON_SIZE = 26;
 const Header = ({style, onPressHeader}) => {
   return (
     <View style={styles.container}>
-        <Text style={{alignSelf: 'center', justifyContent: 'center'}}> My Todo List </Text>
+        
     </View>
   );
 };

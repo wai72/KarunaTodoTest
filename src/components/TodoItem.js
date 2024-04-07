@@ -8,7 +8,8 @@ const TodoItem = ({ task, deleteTask, toggleCompleted }) => {
         <View>
       <View style={styles.todo_item}>
         <CheckBox
-          value={styles.complete_checkbox}
+         // style={styles.complete_checkbox}
+          value={task.completed}
           onValueChange={() => toggleCompleted(task.id)}
         />
         <Text style={styles.todo_item_text}>

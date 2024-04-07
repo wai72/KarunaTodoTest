@@ -14,13 +14,12 @@ import autoMergeLevel2 from 'redux-persist/lib/stateReconciler/autoMergeLevel2';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import rootSaga from './sagas/rootSaga';
-import reducer from './reducers';
+import reducer from './reducer';
 
 const persistConfig = {
-  key: 'root',
+  key: 'karuna todotest',
   storage: AsyncStorage,
   stateReconciler: autoMergeLevel2,
-  blacklist: ['auth', 'modal', 'account'],
 };
 
 const persistedReducer = persistReducer(persistConfig, reducer);

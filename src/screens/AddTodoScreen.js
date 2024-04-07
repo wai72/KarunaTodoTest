@@ -1,52 +1,51 @@
 import React, { useState } from "react";
+import { useDispatch} from 'react-redux';
 import {
   View,
   TextInput,
-  Button,
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  useColorScheme,
+  Text,
+  TouchableOpacity,
 } from "react-native";
-import Header from "../components/Header";
+import { configs } from "../utils/constants";
+import { todoActions } from "../redux/reducer/todo";
+import { useNavigation } from "@react-navigation/native";
 
-const AddTodoScreen = () =>{
+
+const AddTodoScreen = () => {
+  const navigation = useNavigation();
   // State Hooks
-  const [tasks, setTasks] = useState([
-    { id: 1, text: "Doctor Appointment", completed: true },
-    { id: 2, text: "Meeting at School", completed: false },
-  ]);
   const [text, setText] = useState("");
+  const dispatch = useDispatch();
+
   // Function to Add Task
   function addTask() {
     const newTask = { id: Date.now(), text, completed: false };
-    setTasks([...tasks, newTask]);
-    setText("");
+    dispatch(
+      todoActions.SET_TODO(
+       newTask
+      ),
+    );
+    navigation.goBack();
   }
   // Render TodoList Component
   return (
-    <SafeAreaView>
-      <StatusBar />
-      <ScrollView contentInsetAdjustmentBehavior="automatic">
-        <Header />
-        <View style={{ paddingHorizontal: 16, flexDirection: "row" ,  position: 'absolute', bottom: 0}}>
-<TextInput
-  style={{
-    borderColor: "#000000",
-    borderWidth: 2,
-    borderRadius: 4,
-  }}
-  value={text}
-  onChangeText={setText}
-  placeholder="New Task"
-/>
-<Button title="Add" onPress={addTask} />
-</View>
-      </ScrollView>
-    </SafeAreaView>
+    <View style={{ paddingHorizontal: 16, paddingVertical: 16, justifyContent: 'center' }}>
+      <TextInput
+        style={{
+          borderColor: configs.colors.lightGray,
+          height: 50,
+          borderWidth: 1,
+          paddingLeft: 4,
+          borderRadius: 8,
+        }}
+        value={text}
+        onChangeText={setText}
+        placeholder="New Task"
+      />
+      <TouchableOpacity style={{width: 60, height: 50, marginVertical: 16, backgroundColor: configs.colors.green, justifyContent: 'center', borderRadius: 8}} onPress={addTask}>
+      <Text style={{color: configs.colors.white, alignSelf: 'center'}}> Add </Text>
+      </TouchableOpacity>
+    </View>
   );
-}
+};
 export default AddTodoScreen;
-
-
-

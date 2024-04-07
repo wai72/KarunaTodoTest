@@ -1,8 +1,19 @@
 import React from 'react';
-import TodoList from './screens/TodoListScreen';
+import NavigationStack from './routes/NavigationStack';
+import {Provider} from 'react-redux';
+import {PersistGate} from 'redux-persist/integration/react';
+import {persistStore} from 'redux-persist';
+import store from './redux/store'
 
-export default function App() {
+const App = () => {
+  const persistor = persistStore(store);
   return (
-    <TodoList />
+    <Provider store={store}>
+    <PersistGate loading={null} persistor={persistor}>
+      <NavigationStack />
+    </PersistGate>
+  </Provider>
   );
-}
+};
+
+export default App;
