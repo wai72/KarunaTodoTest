@@ -5,7 +5,8 @@ import { configs } from "../utils/constants";
 import { todoActions } from "../redux/reducer/todo";
 import { useNavigation } from "@react-navigation/native";
 import styles from "./AddTodoScreen.css";
-import Toast from 'react-native-toast-message';
+import Toast from 'react-native-simple-toast';
+
 
 const AddTodoScreen = () => {
   const navigation = useNavigation();
@@ -17,21 +18,11 @@ const AddTodoScreen = () => {
   function addTask() {
     const newTask = { id: Date.now(), text, completed: false };
     dispatch(todoActions.SET_TODO(newTask));
-    showToast("Successful", "Added")
+    Toast.show('Added!', Toast.SHORT, {
+      backgroundColor: configs.colors.lightGray,
+    });
     navigation.goBack();
   }
-  const showToast = (text1, text2) => {
-    Toast.show({
-      type: 'Info', 
-      text1: text1, 
-      text2: text2, 
-      position: 'bottom', 
-      visibilityTime: 3000, 
-      autoHide: true, 
-      topOffset: 30, 
-      bottomOffset: 40,
-    });
-}
   // Render TodoList Component
   return (
     <View style={styles.container}>

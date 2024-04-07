@@ -16,7 +16,7 @@ import { todoActions } from "../redux/reducer/todo";
 import styles from './TodoListStyle.css'
 import Icon from 'react-native-vector-icons/Feather';
 import { configs } from "../utils/constants";
-import Toast from 'react-native-toast-message';
+import Toast from 'react-native-simple-toast';
 
 
 const TodoList = () => {
@@ -38,7 +38,9 @@ const TodoList = () => {
         newTask
       ),
     );
-    showToast("Successful", "Deleted")
+    Toast.show('Deleted!', Toast.LONG, {
+      backgroundColor: configs.colors.lightGray,
+    });
   }
   // Function to Toggle Task Completion
   function toggleCompleted(newTask) {
@@ -47,25 +49,34 @@ const TodoList = () => {
        newTask
       ),
     );
-  }
-  const showToast = (text1, text2) => {
-    Toast.show({
-      type: 'Info', 
-      text1: text1, 
-      text2: text2, 
-      position: 'top', 
-      visibilityTime: 3000, 
-      autoHide: true, 
-      topOffset: 30, 
-      bottomOffset: 40,
+    Toast.show('This task is completed!', Toast.LONG, {
+      backgroundColor: configs.colors.lightGray,
     });
-}
+  }
+
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <StatusBar />
       <ScrollView contentInsetAdjustmentBehavior="automatic">
         <Header />
+        <View style={styles.container}>
+      {TODO_LIST.length === 0 ? (
+        <Text style={styles.emptyMessage}>List is Empty</Text>
+      ) : (
         <View style={styles.toto_list}>
+          {TODO_LIST.map((task) => (
+            <TodoItem
+              key={task.id}
+              task={task}
+              deleteTask={() => deleteTask(task)}
+              toggleCompleted={() => toggleCompleted(task)}
+            />
+          ))}
+        </View>
+      )}
+    </View>
+        {/* <View style={styles.toto_list}>
+          
           {TODO_LIST.map((task) => (
             <TodoItem
               key={task.id}
@@ -74,7 +85,7 @@ const TodoList = () => {
               toggleCompleted={() => {toggleCompleted(task)}}
             />
           ))}
-        </View>
+        </View> */}
       </ScrollView>
       {/* Floating action button */}
       <TouchableOpacity

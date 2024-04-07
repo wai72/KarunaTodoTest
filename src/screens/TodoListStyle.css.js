@@ -7,6 +7,13 @@ export default StyleSheet.create({
   
   container: {
     flex: 1,
+    justifyContent: 'center',
+    paddingVertical: 8
+  },
+  emptyMessage:{
+    alignContent: 'center',
+    alignSelf: 'center',
+    fontSize: 18,
   },
   toto_list:{
     padding: 16, 
