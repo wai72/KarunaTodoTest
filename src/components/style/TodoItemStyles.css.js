@@ -31,7 +31,7 @@ export default StyleSheet.create({
   delete_button: {
     width: 40,
     height: 50,
-    backgroundColor: '#ff6347',
+  //  backgroundColor: '#ff6347',
     padding: 4,
     borderRadius: 4,
   }

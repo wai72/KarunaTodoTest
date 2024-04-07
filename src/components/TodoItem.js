@@ -2,6 +2,8 @@ import React from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import CheckBox from '@react-native-community/checkbox';
 import styles from './style/TodoItemStyles.css';
+import Icon from 'react-native-vector-icons/Feather';
+
 
 const TodoItem = ({ task, deleteTask, toggleCompleted }) => {
     return (
@@ -19,7 +21,7 @@ const TodoItem = ({ task, deleteTask, toggleCompleted }) => {
           style={styles.delete_button}
           onPress={() => deleteTask(task.id)}
         >
-          <Text style={{ color: '#fff' }}>Delete</Text>
+           <Icon name="plus" size={24} color="#000000" />
         </TouchableOpacity>
       </View>
       <View style={{width: '100%', height: 1, backgroundColor: "#ABABB0"}}/>

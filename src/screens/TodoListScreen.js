@@ -5,7 +5,6 @@ import {
   SafeAreaView,
   ScrollView,
   StatusBar,
-  StyleSheet,
   TouchableOpacity,
 } from "react-native";
 import TodoItem from "../components/TodoItem";
@@ -13,6 +12,8 @@ import Header from "../components/Header";
 import { FAB } from "react-native-paper";
 import { useNavigation } from "@react-navigation/native";
 import { todoActions } from "../redux/reducer/todo";
+import styles from './TodoListStyle.css'
+import Icon from 'react-native-vector-icons/Feather';
 
 
 const TodoList = () => {
@@ -37,7 +38,6 @@ const TodoList = () => {
   }
   // Function to Toggle Task Completion
   function toggleCompleted(newTask) {
-   // setTasks(tasks.map(task => (task.id === id ? { ...task, completed: !task.completed } : task)));
     dispatch(
       todoActions.UPDATE_TODO(
        newTask
@@ -50,7 +50,7 @@ const TodoList = () => {
       <StatusBar />
       <ScrollView contentInsetAdjustmentBehavior="automatic">
         <Header />
-        <View style={{ padding: 16, flex: 1 }}>
+        <View style={styles.toto_list}>
           {TODO_LIST.map((task) => (
             <TodoItem
               key={task.id}
@@ -64,28 +64,11 @@ const TodoList = () => {
       {/* Floating action button */}
       <TouchableOpacity
         style={styles.fab}
-        onPress={() => console.log("FAB pressed")} // Add your FAB functionality here
-      >
-        <FAB icon="plus" onPress={onPressFAB} />
+        onPress={onPressFAB}>
+        <Icon name="plus" size={24} color="#000000" />
       </TouchableOpacity>
     </SafeAreaView>
   );
 };
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  fab: {
-    position: "absolute",
-    margin: 16,
-    right: 0,
-    bottom: 0,
-    borderRadius: 30,
-    width: 60,
-    height: 60,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-});
 export default TodoList;
