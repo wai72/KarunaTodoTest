@@ -1,23 +1,28 @@
 import React from 'react';
-import { View, Text, CheckBox, Button } from 'react-native';
-import styles from './style/styles';
+import { View, Text, TouchableOpacity } from 'react-native';
+import CheckBox from '@react-native-community/checkbox';
+import styles from './style/TodoItemStyles.css';
 
-export default function TodoItem({ task, deleteTask, toggleCompleted }) {
+const TodoItem = ({ task, deleteTask, toggleCompleted }) => {
     return (
-      <View style={styles.todo-item}>
+        <View>
+      <View style={styles.todo_item}>
         <CheckBox
-          value={task.completed}
+          value={styles.complete_checkbox}
           onValueChange={() => toggleCompleted(task.id)}
         />
-        <Text style={[styles.todo-item-text, task.completed && styles.completed]}>
+        <Text style={styles.todo_item_text}>
           {task.text}
         </Text>
         <TouchableOpacity
-          style={styles.delete-button}
+          style={styles.delete_button}
           onPress={() => deleteTask(task.id)}
         >
           <Text style={{ color: '#fff' }}>Delete</Text>
         </TouchableOpacity>
       </View>
+      <View style={{width: '100%', height: 1, backgroundColor: "#ABABB0"}}/>
+      </View>
     );
   }
+  export default TodoItem;
