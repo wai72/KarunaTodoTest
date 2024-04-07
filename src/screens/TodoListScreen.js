@@ -12,6 +12,8 @@ import TodoItem from "../components/TodoItem";
 import Header from "../components/Header";
 import { FAB } from "react-native-paper";
 import { useNavigation } from "@react-navigation/native";
+import { todoActions } from "../redux/reducer/todo";
+
 
 const TodoList = () => {
   const navigation = useNavigation();
@@ -24,22 +26,22 @@ const TodoList = () => {
   const onPressFAB = () => {
     navigation.navigate("AddTodo");
   };
-  // State Hooks
-  const [tasks, setTasks] = useState([
-    { id: 1, text: "Doctor Appointment", completed: true },
-    { id: 2, text: "Meeting at School", completed: false },
-  ]);
 
   // Function to Delete Task
-  function deleteTask(id) {
-    setTasks(tasks.filter((task) => task.id !== id));
+  function deleteTask(newTask) {
+    dispatch(
+      todoActions.DELETE_TODO(
+        newTask
+      ),
+    );
   }
   // Function to Toggle Task Completion
-  function toggleCompleted(id) {
-    setTasks(
-      tasks.map((task) =>
-        task.id === id ? { ...task, completed: !task.completed } : task
-      )
+  function toggleCompleted(newTask) {
+   // setTasks(tasks.map(task => (task.id === id ? { ...task, completed: !task.completed } : task)));
+    dispatch(
+      todoActions.UPDATE_TODO(
+       newTask
+      ),
     );
   }
 
@@ -53,8 +55,8 @@ const TodoList = () => {
             <TodoItem
               key={task.id}
               task={task}
-              deleteTask={deleteTask}
-              toggleCompleted={toggleCompleted}
+              deleteTask= {() => {deleteTask(task)}}
+              toggleCompleted={() => {toggleCompleted(task)}}
             />
           ))}
         </View>

@@ -15,12 +15,18 @@ const todo = createSlice({
       return state;
     },
     DELETE_TODO: (state, action) => {
-      state.todoList = [...state.todoList, action.payload];
-      return state;
+      return {
+        ...state,
+        todoList: state.todoList.filter(todo => todo.id !== action.payload.id)
+      };
     },
     UPDATE_TODO: (state, action) => {
-      state.todoList = [...state.todoList, action.payload];
-      return state;
+      return {
+        ...state,
+        todoList: state.todoList.map(todo =>
+          todo.id === action.payload.id ? { ...todo, completed: !todo.completed } : todo
+        )
+      };
     },
   },
 });
